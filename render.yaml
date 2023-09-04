@@ -6,6 +6,7 @@ services:
     branch: feature/render
     region: singapore
     plan: free
+    rootDir: web
     buildCommand: npm run build
     startCommand: npm run start
     envVars:
