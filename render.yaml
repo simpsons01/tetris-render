@@ -9,6 +9,7 @@ services:
     rootDir: web
     buildCommand: npm install && npm run build
     startCommand: npm run start
+    healthCheckPath: /health-check
     envVars:
       - key: REDIS_HOST_URL
         fromService:
