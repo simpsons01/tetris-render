@@ -35,12 +35,6 @@ services:
     branch: feature/render
     buildCommand: npm run build
     staticPublishPath: ./build
-    envVars:
-      - key: REACT_APP_BACKEND_URL
-        fromService:
-          type: web
-          name: express-tetris
-          property: host
     routes:
       - type: rewrite
         source: /*
