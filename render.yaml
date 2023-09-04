@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: express-tetris
+    runtime: node
+    repo: https://github.com/simpsons01/express-tetris
+    branch: feature/render
+    region: singapore
+    plan: free
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: REDIS_HOST_URL
+        fromService:
+          type: redis
+          name: tetris-redis
+          property: host
+      - key: REDIS_HOST_PORT
+        fromService:
+          type: redis
+          name: tetris-redis
+          property: port
+      - key: ALLOW_ORIGIN
+        fromService:
+          type: web
+          name: react-tetris
+          property: host
+      - key: JWT_SECRET
+        generateValue: true
+  - type: web
+    name: react-tetris
+    plan: free
+    runtime: static
+    repo: https://github.com/simpsons01/react-tetris
+    branch: feature/render
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        fromService:
+          type: web
+          name: tetris-express
+          property: host
+  - type: redis
+    name: tetris-redis
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    plan: free
