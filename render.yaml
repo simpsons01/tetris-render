@@ -46,6 +46,7 @@ services:
         destination: /index.html
   - type: redis
     name: tetris-redis
+    region: singapore
     plan: free
     ipAllowList:
       - source: 0.0.0.0/0
