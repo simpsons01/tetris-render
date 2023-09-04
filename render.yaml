@@ -37,7 +37,7 @@ services:
       - key: REACT_APP_BACKEND_URL
         fromService:
           type: web
-          name: tetris-express
+          name: express-tetris
           property: host
   - type: redis
     name: tetris-redis
