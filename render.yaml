@@ -28,7 +28,6 @@ services:
         generateValue: true
   - type: web
     name: react-tetris
-    plan: free
     runtime: static
     repo: https://github.com/simpsons01/react-tetris
     branch: feature/render
@@ -42,7 +41,7 @@ services:
           property: host
   - type: redis
     name: tetris-redis
+    plan: free
     ipAllowList:
       - source: 0.0.0.0/0
         description: everywhere
-    plan: free
